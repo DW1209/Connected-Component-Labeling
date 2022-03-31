@@ -109,4 +109,5 @@ def connected_component(filename = 'vtest.mp4'):
         cv2.waitKey(1)
 
 if __name__ == "__main__":
-    connected_component(filename = sys.argv[1])
+    if len(sys.argv) > 1: connected_component(sys.argv[1])
+    else: connected_component()
