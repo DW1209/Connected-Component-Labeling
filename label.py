@@ -1,8 +1,9 @@
 import cv2
+import sys
 import numpy as np
 
-def connected_component():
-    cap = cv2.VideoCapture('vtest.mp4')
+def connected_component(filename = 'vtest.mp4'):
+    cap = cv2.VideoCapture(filename)
 
 # Create a background substractor.
     backSub = cv2.createBackgroundSubtractorMOG2()
@@ -96,8 +97,8 @@ def connected_component():
                         if i < start_y: start_y = i
                         if i > end_y: end_y = i
 
-            start_coop, end_coop = (start_x, start_y), (end_x, end_y)
-            coords.append((start_coop, end_coop))
+            start_coord, end_coord = (start_x, start_y), (end_x, end_y)
+            coords.append((start_coord, end_coord))
 
 # Draw rectangles to frame the objects.
         for i in range(1, len(coords)):
@@ -108,4 +109,4 @@ def connected_component():
         cv2.waitKey(1)
 
 if __name__ == "__main__":
-    connected_component()
+    connected_component(filename = sys.argv[1])
